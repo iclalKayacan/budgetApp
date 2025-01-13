@@ -8,8 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#FFFFFF", // Beyaz
+        foreground: "#343A40", // Koyu Gri
+        primary: "#007BFF", // Mavi
+        success: "#28A745", // Yeşil
+        danger: "#DC3545", // Kırmızı
+        neutral: "#F8F9FA", // Açık Gri
+      },
+      fontFamily: {
+        sans: ["Inter", "Roboto", "Poppins", "sans-serif"],
       },
     },
   },
