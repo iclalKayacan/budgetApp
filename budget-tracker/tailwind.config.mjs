@@ -1,22 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // Projenizdeki dosyaların yolunu burada belirtin
   ],
   theme: {
     extend: {
       colors: {
-        background: "#FFFFFF", // Beyaz
-        foreground: "#343A40", // Koyu Gri
-        primary: "#007BFF", // Mavi
-        success: "#28A745", // Yeşil
-        danger: "#DC3545", // Kırmızı
-        neutral: "#F8F9FA", // Açık Gri
-      },
-      fontFamily: {
-        sans: ["Inter", "Roboto", "Poppins", "sans-serif"],
+        primary: "#3B82F6", // Ana renk (Mavi)
+        background: "#F6F8FA", // Arka plan rengi
+        textDark: "#1E293B", // Koyu metin rengi
+        positive: "#22C55E", // Pozitif değişim (Yeşil)
+        negative: "#EF4444", // Negatif değişim (Kırmızı)
+        warning: "#F59E0B", // Uyarılar ve vurgu (Turuncu)
       },
     },
   },

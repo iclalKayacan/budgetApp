@@ -1,121 +1,47 @@
 import { useState } from "react";
-import {
-  FaHome,
-  FaChartLine,
-  FaBell,
-  FaHeart,
-  FaWallet,
-  FaSignOutAlt,
-  FaMoon,
-} from "react-icons/fa";
+import Link from "next/link";
 
-export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
+const Sidebar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleSidebar = () => setIsOpen(!isOpen);
+  const menuItems = [
+    { name: "Dashboard", path: "/dashboard", icon: "🏠" },
+    { name: "Departments", path: "/departments", icon: "🏢" },
+    { name: "Reports", path: "/reports", icon: "📊" },
+    { name: "Settings", path: "/settings", icon: "⚙️" },
+  ];
 
   return (
     <div
-      className={`h-screen bg-white shadow-lg fixed transition-all duration-300 ${
-        isOpen ? "w-64" : "w-16"
-      }`}
+      className={`${
+        isOpen ? "w-64" : "w-20"
+      } bg-gray-100 min-h-screen border-r border-gray-300 transition-all duration-300 flex flex-col`}
     >
-      {/* Sidebar Header */}
-      <div className="flex items-center justify-between px-4 py-4 border-b">
-        <div className={`${isOpen ? "block" : "hidden"} transition-all`}>
-          <h1 className="text-lg font-bold text-primary">CodingLab</h1>
-          <span className="text-sm text-gray-500">Web Developer</span>
-        </div>
-        <button className="p-2 text-primary" onClick={toggleSidebar}>
-          ▶
-        </button>
-      </div>
-
-      {/* Search Bar */}
       {isOpen && (
-        <div className="px-4 py-4 border-b">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="w-full p-2 text-sm border rounded-lg"
-          />
+        <div className="p-4 text-xl font-bold text-gray-700 border-b border-gray-300">
+          Bütçe Takip
         </div>
       )}
-
-      {/* Menu Items */}
-      <ul className="mt-4 space-y-2">
-        <li>
-          <a
-            href="#"
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all"
+      <ul className="mt-4">
+        {menuItems.map((item) => (
+          <li
+            key={item.name}
+            className={`p-4 hover:bg-gray-200 cursor-pointer ${
+              isOpen ? "text-gray-700" : "text-gray-500"
+            }`}
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <FaHome className="text-lg text-primary" />
-            {isOpen && <span className="ml-3">Dashboard</span>}
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all"
-          >
-            <FaChartLine className="text-lg text-primary" />
-            {isOpen && <span className="ml-3">Revenue</span>}
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all"
-          >
-            <FaBell className="text-lg text-primary" />
-            {isOpen && <span className="ml-3">Notifications</span>}
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all"
-          >
-            <FaHeart className="text-lg text-primary" />
-            {isOpen && <span className="ml-3">Likes</span>}
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all"
-          >
-            <FaWallet className="text-lg text-primary" />
-            {isOpen && <span className="ml-3">Wallets</span>}
-          </a>
-        </li>
+            <Link href={item.path}>
+              <div className="flex items-center space-x-4">
+                <span>{item.icon}</span>
+                {isOpen && <span>{item.name}</span>}
+              </div>
+            </Link>
+          </li>
+        ))}
       </ul>
-
-      {/* Footer */}
-      <div className="absolute bottom-4 w-full">
-        <ul>
-          <li>
-            <a
-              href="#"
-              className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all"
-            >
-              <FaSignOutAlt className="text-lg text-primary" />
-              {isOpen && <span className="ml-3">Logout</span>}
-            </a>
-          </li>
-          <li>
-            <div className="flex items-center px-4 py-2 text-sm hover:bg-gray-100 transition-all">
-              <FaMoon className="text-lg text-primary" />
-              {isOpen && (
-                <span className="ml-3 flex items-center">
-                  Dark Mode
-                  <input type="checkbox" className="ml-2" />
-                </span>
-              )}
-            </div>
-          </li>
-        </ul>
-      </div>
     </div>
   );
-}
+};
+
+export default Sidebar;
